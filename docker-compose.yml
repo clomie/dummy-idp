@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  dummy-idp:
+    image: nginx
+    volumes:
+      - ./dummy-idp:/usr/share/nginx/html
+    ports:
+      - 80:80
