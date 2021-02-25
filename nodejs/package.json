@@ -1,0 +1,11 @@
+{
+  "name": "nodejs",
+  "private": true,
+  "scripts": {
+    "generate:keys": "node ./generateKeys.json",
+    "generate:idtoken": "node ./generateKeys.json"
+  },
+  "devDependencies": {
+    "jose": "^2.0.4"
+  }
+}
