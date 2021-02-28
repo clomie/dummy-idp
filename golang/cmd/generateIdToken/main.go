@@ -48,4 +48,21 @@ func main() {
 		return
 	}
 	fmt.Printf("%s\n", signed)
+
+	jwkSetBytes, err := ioutil.ReadFile("../dummy-idp/.well-known/jwks.json")
+	if err != nil {
+		log.Printf("failed to read jwks.json: %s", err)
+		return
+	}
+
+	jwkSet, err := jwk.Parse(jwkSetBytes)
+	if err != nil {
+		log.Printf("failed to parse jwks.json: %s", err)
+		return
+	}
+
+	_, err = jwt.Parse(signed, jwt.WithKeySet(jwkSet), jwt.WithValidate(true))
+	if err != nil {
+		fmt.Printf("failed to parse payload: %s\n", err)
+	}
 }
